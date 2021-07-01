@@ -4,7 +4,13 @@
       <h2>User info</h2>
       <%= render 'users/info', user: current_user %>
       <h2 class="mt-3">New book</h2>
-      <%= render 'form', book: @book %>
+      <% if @newbook.errors.any? %>
+        <%=@newbook.errors.count %>件のエラーが発生しました。
+        <%@newbook.errors.full_messages.each do |message| %>
+          <%= message %>
+        <%end%>
+      <%end%>
+      <%= render 'form', book: @newbook %>
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
